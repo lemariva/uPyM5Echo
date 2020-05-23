@@ -12,13 +12,15 @@
   
 from machine import I2S
 from machine import Pin
+from config import *
 
 SAMPLES_PER_SECOND = 44100
 
-bck_pin = Pin(19)   # Bit clock output
-ws_pin = Pin(33)    # Word clock output
-sdout_pin = Pin(22) # Serial data output
-sdin_pin = Pin(23) # Serial data output
+bck_pin = Pin(device_config['bck'])     # Bit clock output
+ws_pin = Pin(device_config['ws'])       # Word clock output
+sdout_pin = Pin(device_config['sdout']) # Serial data output
+sdin_pin = Pin(device_config['sdin'])   # Serial data output
+
 
 # channelformat settings:
 #    stereo WAV:  channelformat=I2S.RIGHT_LEFT
@@ -38,7 +40,6 @@ while True:
     try:
         audio_samples = bytearray(s.read(1024))
         numwritten = 0
-        # end of WAV file?    
         if len(audio_samples) == 0:
             s.seek(44) # advance to first byte of Data section
         else:
