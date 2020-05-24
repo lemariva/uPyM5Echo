@@ -31,7 +31,7 @@ audio_out = I2S(I2S.NUM1, bck=bck_pin, ws=ws_pin, sdout=sdout_pin,
               samplerate=SAMPLES_PER_SECOND,
               dmacount=8, dmalen=512)
 
-s = open('test-audio.wav','rb')
+s = open('audio_nr0.wav','rb')
 s.seek(44) # advance to first byte of Data section in WAV file
 
 # continuously read audio samples from the WAV file 
@@ -53,3 +53,5 @@ while True:
         s.close()
         audio_out.deinit()
         break
+
+    num_bytes_written = audio_out.write(samples) 

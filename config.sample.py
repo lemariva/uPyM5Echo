@@ -17,6 +17,7 @@ device_config = {
     'ws':33,
     'sdout':22,
     'sdin':23,
+    'led':27,
 }
 
 app_config = {

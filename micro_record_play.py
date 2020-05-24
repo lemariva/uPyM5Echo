@@ -22,7 +22,7 @@ ws_pin = Pin(device_config['ws'])       # Word clock output
 sdout_pin = Pin(device_config['sdout']) # Serial data output
 sdin_pin = Pin(device_config['sdin'])   # Serial data output
 
-samples = bytearray(24000)
+samples = bytearray(36000)
 
 audio_in = I2S(I2S.NUM0,                                  # create I2S peripheral to read audio
                ws=ws_pin, sdin=sdin_pin,                  # 
@@ -30,11 +30,11 @@ audio_in = I2S(I2S.NUM0,                                  # create I2S periphera
                dataformat=I2S.B16,                        # 
                channelformat=I2S.ONLY_LEFT,
                samplerate=8000, 
-               dmacount=6,dmalen=60)
+               dmacount=8,dmalen=512)
 
 num_bytes_read = bytes(audio_in.readinto(samples))
 
-time.sleep_ms(10000)
+time.sleep_ms(2000)
 
 audio_out = I2S(I2S.NUM1,                                  # create I2S peripheral to write audio
                 bck=bck_pin, ws=ws_pin, sdout=sdout_pin,    # sample data to an Adafruit I2S Amplifier
@@ -42,13 +42,6 @@ audio_out = I2S(I2S.NUM1,                                  # create I2S peripher
                 dataformat=I2S.B16,                        # based on NS4168 device
                 channelformat=I2S.ONLY_LEFT,
                 samplerate=8000, 
-                dmacount=6,dmalen=60)
+                dmacount=8,dmalen=512)
 
 num_bytes_written = audio_out.write(samples) 
-
-
-
-numwritten = 0
-# loop until samples can be written to DMA
-while numwritten == 0:
-    numwritten = audio_out.write(samples, timeout=0)
