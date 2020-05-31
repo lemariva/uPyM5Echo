@@ -2,7 +2,7 @@
 This repository includes two applications for the M5Stack ATOM Echo running MicroPython. 
 
 ## Check the project
-[M5Stack: Introducing the new M5Stack ATOM ECHO](https://lemariva.com/blog/default/default/m5stack-introducing-new-m5stack-atom-echo)
+[M5Stack: Introducing the new M5Stack ATOM ECHO](https://lemariva.com/blog/2020/06/m5stack-introducing-new-m5stack-atom-echo)
 
 ## Preview
 [![Playing and recording audio on the M5Stack ATOM Echo with MicroPython](https://img.youtube.com/vi/V9BW7j_bHCI/0.jpg)](https://www.youtube.com/watch?v=V9BW7j_bHCI)
